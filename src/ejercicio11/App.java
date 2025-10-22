@@ -6,9 +6,13 @@ public class App {
         int numero = 0;
         do{
             try {
-                System.out.print("Introduzca un número entero: ");    
+                System.out.print("Introduzca un número entero (Máx: "+ ((int)Math.pow(Integer.MAX_VALUE, 1.0/3.0)-4) +"): ");    
                 numero = Integer.parseInt(System.console().readLine());
-                correcto = true;
+                if(Math.pow(numero+4,3)<=Integer.MAX_VALUE)
+                    correcto = true;
+                else
+                    System.out.println("El número es demasiado grande. Intenta con uno más pequeño");
+
             } catch (NumberFormatException e) {
                 System.out.println("Debes introducir un número entero");
             } catch (Exception e) {
@@ -37,37 +41,33 @@ public class App {
             aux = aux / 10;            
             digitosn3++;
         }while(aux != 0);        
-        String format = "%"+ (int)Math.ceil((digitosn+2)/2.0)+"s"+
+        String format = 
+        "%"+ (int)Math.ceil((digitosn+1)/2.0)+"s"+
         "n"+
         "%"+ (int)Math.floor((digitosn+1)/2.0)+"s"+
         "|"+ 
-        "%"+ (int)Math.ceil((digitosn2+1)/2.0)+"s"+
+        "%"+ (int)Math.ceil((digitosn2)/2.0)+"s"+
         "n2"+
-        "%"+ (int)Math.floor((digitosn2+1)/2.0)+ "s" +
+        "%"+ (int)Math.floor((digitosn2)/2.0)+ "s" +
         "|"+ 
-        "%"+ (int)Math.ceil((digitosn3+1)/2.0)+"s"+
+        "%"+ (int)Math.ceil((digitosn3)/2.0)+"s"+
         "n3"+
-        "%"+ (int)Math.floor((digitosn3+1)/2.0)+ "s%n";
+        "%"+ (int)Math.floor((digitosn3)/2.0)+ "s|%n";
 
         System.out.printf(format
-            ,"", "", "", "", "", "");                  
+            ,"", "", "", "", "", "");        
+        for(int i = 1; i<= digitosn+digitosn2+digitosn3+9;i++)          
+            System.out.print("-");
+        System.out.println();
         for(int i = 0; i<5;i++){
-            format = "%"+ (int)Math.ceil((digitosn+1)/2.0)+"s"+
-            "%d"+
-            "%"+ (int)Math.floor((digitosn+1)/2.0)+"s"+
-            "|"+ 
-            "%"+ (int)Math.ceil((digitosn2+1)/2.0)+"s"+
-            "%d"+
-            "%"+ (int)Math.floor((digitosn2+1)/2.0)+ "s" +
-            "|"+ 
-            "%"+ (int)Math.ceil((digitosn3+1)/2.0)+"s"+
-            "%d"+
-            "%"+ (int)Math.floor((digitosn3+1)/2.0)+ "s%n";
+            format = " %"+ (-digitosn)+"s |"+            
+            " %"+ (-digitosn2)+"s |"+
+            " %"+ (-digitosn3)+"s |%n";
 
-            System.out.printf(format
-                ,"", (int)Math.pow(numero+i,1), "", 
-                "", (int)Math.pow(numero+i,2) , "", 
-                "", (int)Math.pow(numero+i,3), "");     
+            System.out.printf(format,
+            (int)Math.pow(numero+i,1), 
+            (int)Math.pow(numero+i,2), 
+            (int)Math.pow(numero+i,3));     
         }
     }
     
