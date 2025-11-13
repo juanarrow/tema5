@@ -47,12 +47,13 @@ public class App {
                 }
                 System.out.println();
             }
-            Thread.sleep(100);
-            System.out.print(CLEAN_SCREEN);    
+            
             alt1++;
             if(alt1==11) alt1=1;
             alt2--;        
             if(alt2==0) alt2=10;
+            Thread.sleep(100);
+            System.out.print(CLEAN_SCREEN);    
 
         }while(true);
         
